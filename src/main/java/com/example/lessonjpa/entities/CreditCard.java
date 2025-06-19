@@ -54,6 +54,16 @@ public class CreditCard {
         this.user = user;
     }
 
+    public CreditCard setValues(CreditCardDTO creditCard, User user){
+        this.number = creditCard.getNumber();
+        this.cvv = creditCard.getCvv();
+        this.expireDate = creditCard.getExpireDate();
+        this.balance = creditCard.getBalance();
+        this.user = user;
+
+        return this;
+    }
+
     @Override
     public String toString() {
         return "CreditCard{" +

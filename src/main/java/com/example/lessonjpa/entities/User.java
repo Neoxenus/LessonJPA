@@ -44,4 +44,12 @@ public class User {
         this.age = user.getAge();
         this.email = user.getEmail();
     }
+
+    public User setValues(UserDTO user){
+        this.name = user.getName();
+        this.surname = user.getSurname();
+        this.age = user.getAge();
+        this.email = user.getEmail();
+        return this;
+    }
 }

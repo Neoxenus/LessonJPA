@@ -77,4 +77,13 @@ public class Credit {
         this.interestRate = credit.getInterestRate();
         this.rateType = credit.getRateType();
     }
+
+    public Credit setValues(CreditDTO credit, CreditCard creditCard) {
+        this.amount = credit.getAmount();
+        this.creditCard = creditCard;
+        this.duration = credit.getDuration();
+        this.interestRate = credit.getInterestRate();
+        this.rateType = credit.getRateType();
+        return this;
+    }
 }
