@@ -17,6 +17,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -88,7 +89,6 @@ public class UserServiceImpl implements UserService {
             return errors;
         }
         User user = optionalUser.get().setValues(userDTO);
-        user.setId(id);
 
         BindingResult bindingResult = new BeanPropertyBindingResult(user, "user");
         validator.validate(user, bindingResult);

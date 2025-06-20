@@ -9,6 +9,7 @@ import com.example.lessonjpa.services.CreditService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.SmartValidator;
@@ -19,6 +20,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional
 public class CreditServiceImpl implements CreditService {
     private final CreditRepository creditRepository;
     private final CreditCardRepository creditCardRepository;
@@ -33,6 +35,7 @@ public class CreditServiceImpl implements CreditService {
     }
 
 
+    @Transactional(readOnly = true)
     public String showAll(){
         List<Credit> credits = creditRepository.findAll();
         if (!credits.isEmpty())
@@ -41,6 +44,7 @@ public class CreditServiceImpl implements CreditService {
             return "No credits to display";
     }
 
+    @Transactional(readOnly = true)
     public String showAllByUserId(int userId){
         List<Credit> credits = creditRepository.findByCreditCardByUserId(userId);
         if (!credits.isEmpty())
