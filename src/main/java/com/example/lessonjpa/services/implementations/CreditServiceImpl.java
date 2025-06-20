@@ -46,7 +46,7 @@ public class CreditServiceImpl implements CreditService {
 
     @Transactional(readOnly = true)
     public String showAllByUserId(int userId){
-        List<Credit> credits = creditRepository.findByCreditCardByUserId(userId);
+        List<Credit> credits = creditRepository.findByCreditCardUserId(userId);
         if (!credits.isEmpty())
             return credits.stream().map(Credit::toString).collect(Collectors.joining("\n"));
         else
@@ -133,10 +133,7 @@ public class CreditServiceImpl implements CreditService {
 
     public String deleteCredit(int id){
         String errors = "Error\n";
-        if(!creditRepository.existsById(id)){
-            errors += "No credits with such an id\n";
-            return errors;
-        } else {
+        if (creditRepository.existsById(id)) {
             try {
                 creditRepository.deleteById(id);
             } catch (Exception e){
@@ -145,6 +142,9 @@ public class CreditServiceImpl implements CreditService {
             }
 
             return "Deleted";
+        } else {
+            errors += "No credits with such an id\n";
+            return errors;
         }
     }
 

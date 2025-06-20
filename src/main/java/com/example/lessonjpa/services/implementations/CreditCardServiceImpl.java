@@ -136,10 +136,7 @@ public class CreditCardServiceImpl implements CreditCardService {
     public String deleteCreditCard(int id) {
 
         String errors = "Error\n";
-        if(creditCardRepository.existsById(id)){
-            errors += "No credit card with such id\n";
-            return errors;
-        } else {
+        if (creditCardRepository.existsById(id)) {
             try {
                 creditCardRepository.deleteById(id);
             } catch (Exception e){
@@ -147,6 +144,9 @@ public class CreditCardServiceImpl implements CreditCardService {
                 return errors;
             }
             return "Deleted";
+        } else {
+            errors += "No credit card with such id\n";
+            return errors;
         }
     }
 
@@ -155,7 +155,7 @@ public class CreditCardServiceImpl implements CreditCardService {
     public String findByUserId(int userId) {
 
         String errors = "Error\n";
-        if(userRepository.existsById(userId)) {
+        if(!userRepository.existsById(userId)) {
             errors += "No users with such id\n";
             return errors;
         } else {

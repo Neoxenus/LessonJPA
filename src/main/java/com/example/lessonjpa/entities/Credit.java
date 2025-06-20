@@ -47,7 +47,7 @@ public class Credit {
     //TimeStamp:    date of creating a credit
 
     @Transient
-    private Double getMonthPayment(){
+    private Double getPeriodicPayment(){
         if(interestRate == 0){
             return getTotalSum() / duration;
         } else{
@@ -66,7 +66,7 @@ public class Credit {
                 ", interestRate=" + interestRate + "%" +
                 ", rateType=" + rateType +
                 ", totalSum=" + getTotalSum() +
-                ", monthPayment=" + getMonthPayment() +
+                ", "+ rateType.toString().toLowerCase() +"Payment=" + getPeriodicPayment() +
                 '}';
     }
 

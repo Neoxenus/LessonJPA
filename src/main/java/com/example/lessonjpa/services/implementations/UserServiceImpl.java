@@ -113,10 +113,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String deleteUser(int id) {
         String errors = "Error\n";
-        if(!userRepository.existsById(id)){
-            errors += "No users with such id\n";
-            return errors;
-        } else {
+        if (userRepository.existsById(id)) {
             try {
                 userRepository.deleteById(id);
             } catch (Exception e){
@@ -125,6 +122,9 @@ public class UserServiceImpl implements UserService {
             }
 
             return "Deleted";
+        } else {
+            errors += "No users with such id\n";
+            return errors;
         }
     }
 }
