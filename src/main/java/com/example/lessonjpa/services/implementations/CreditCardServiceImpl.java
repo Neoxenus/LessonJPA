@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-@Transactional
+
 public class CreditCardServiceImpl implements CreditCardService {
 
     private final CreditCardRepository creditCardRepository;
@@ -37,7 +37,7 @@ public class CreditCardServiceImpl implements CreditCardService {
         this.validator = validator;
     }
 
-    @Transactional(readOnly = true)
+
     @Override
     public String showAll() {
         List<CreditCard> creditCards = creditCardRepository.findAll();
@@ -47,6 +47,7 @@ public class CreditCardServiceImpl implements CreditCardService {
             return "Nothing to display";
     }
 
+    @Transactional
     @Override
     public String addCreditCard(CreditCardDTO creditCardDTO) {
 
@@ -85,6 +86,7 @@ public class CreditCardServiceImpl implements CreditCardService {
         }
     }
 
+    @Transactional
     @Override
     public String updateCreditCard(int id, CreditCardDTO creditCardDTO) {
 
@@ -132,6 +134,7 @@ public class CreditCardServiceImpl implements CreditCardService {
         }
     }
 
+    @Transactional
     @Override
     public String deleteCreditCard(int id) {
 
@@ -150,7 +153,7 @@ public class CreditCardServiceImpl implements CreditCardService {
         }
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     @Override
     public String findByUserId(int userId) {
 

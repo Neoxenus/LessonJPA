@@ -8,8 +8,6 @@ import java.util.List;
 public interface CreditRepository extends JpaRepository<Credit, Integer> {
 
 
-//    @Query("SELECT c FROM Credit c WHERE c.creditCard.user.id = :userId")
-//    List<Credit> findByCreditCardUserId(@Param("userId") int userId);
     List<Credit> findByCreditCardUserId(int userId);
 
 }

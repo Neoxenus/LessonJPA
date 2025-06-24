@@ -37,8 +37,8 @@ public class Controller {
             try {
                 commandContainer.doCommand(commandContainer.getCommand(commandCode));
             } catch (Exception e){
-                System.out.println(e.getMessage());
-                System.out.println("Incorrect input");
+                System.out.println("Error:\n" + e.getMessage());
+//                System.out.println("Incorrect input");
             }
         }
     }

@@ -17,7 +17,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -28,7 +27,7 @@ public class UserServiceImpl implements UserService {
         this.validator = validator;
     }
 
-    @Transactional(readOnly = true)
+
     @Override
     public String showAll() {
         List<User> users = userRepository.findAll();
@@ -71,6 +70,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Transactional
     @Override
     public String updateUser(int id, UserDTO userDTO) {
         String errors = "Error\n";
@@ -110,6 +110,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Transactional
     @Override
     public String deleteUser(int id) {
         String errors = "Error\n";

@@ -20,7 +20,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class CreditServiceImpl implements CreditService {
     private final CreditRepository creditRepository;
     private final CreditCardRepository creditCardRepository;
@@ -34,8 +33,7 @@ public class CreditServiceImpl implements CreditService {
         this.validator = validator;
     }
 
-
-    @Transactional(readOnly = true)
+    @Override
     public String showAll(){
         List<Credit> credits = creditRepository.findAll();
         if (!credits.isEmpty())
@@ -44,7 +42,8 @@ public class CreditServiceImpl implements CreditService {
             return "No credits to display";
     }
 
-    @Transactional(readOnly = true)
+
+    @Override
     public String showAllByUserId(int userId){
         List<Credit> credits = creditRepository.findByCreditCardUserId(userId);
         if (!credits.isEmpty())
@@ -53,6 +52,8 @@ public class CreditServiceImpl implements CreditService {
             return "No credits to display";
     }
 
+    @Transactional
+    @Override
     public String addCredit(CreditDTO creditDTO){
         String errors = "Error\n";
         boolean isErrors = false;
@@ -92,6 +93,9 @@ public class CreditServiceImpl implements CreditService {
             return "Added";
         }
     }
+
+    @Transactional
+    @Override
     public String updateCredit(int id, CreditDTO updatedCredit) {
         String errors = "Error\n";
 
@@ -131,6 +135,8 @@ public class CreditServiceImpl implements CreditService {
         }
     }
 
+    @Transactional
+    @Override
     public String deleteCredit(int id){
         String errors = "Error\n";
         if (creditRepository.existsById(id)) {

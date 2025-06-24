@@ -1,6 +1,5 @@
 package com.example.lessonjpa.command;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
@@ -13,7 +12,6 @@ import java.util.stream.Collectors;
 public class CommandContainer {
     private final Map<Integer, Command> commands;
 
-    @Autowired
     public CommandContainer(List<Command> commandList) {
         commands = commandList.stream()
                 .collect(Collectors.toMap(Command::getCode, Function.identity()));
