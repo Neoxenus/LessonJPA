@@ -13,6 +13,8 @@ import java.util.stream.Collectors;
 public class CommandContainer {
     private final Map<Integer, Command> commands;
 
+//TODO: Autowired anotation is redundant here, because we do not inject any beans
+    
     @Autowired
     public CommandContainer(List<Command> commandList) {
         commands = commandList.stream()
